@@ -1,0 +1,25 @@
+[2/24/21, 7:52 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:00 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:01 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:03 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:05 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:06 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:09 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:16 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:16 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:17 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:18 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:20 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:23 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/24/21, 8:25 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:37 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:39 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:39 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:40 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:40 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:43 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:45 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 0: Communications link failure
+
+Last packet sent to the server was 21528 ms ago.>
+[2/25/21, 12:48 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:50 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
