@@ -23,3 +23,9 @@
 Last packet sent to the server was 21528 ms ago.>
 [2/25/21, 12:48 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
 [2/25/21, 12:50 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 12:58 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 1:00 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 1:02 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 1:11 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/25/21, 1:15 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'bookId' doesn't have a default value>
+[2/26/21, 3:28 PM]|BookCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'Jesus' in 'where clause'>

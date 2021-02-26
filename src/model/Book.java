@@ -6,6 +6,7 @@ import exception.InvalidPrimaryKeyException;
     import java.sql.SQLException;
     import java.util.*;
 
+
     public class Book extends EntityBase {
 
         private static final String myTableName = "Book";
@@ -75,6 +76,11 @@ import exception.InvalidPrimaryKeyException;
             return "Book: ID: " + getState("bookId") + " Title: " + getState("bookTitle");
         }
 
+        public static int compare(Book a, Book b) {
+            String ba = (String)a.getState("bookTitle");
+            String bb = (String)b.getState("bookTitle");
+            return ba.compareTo(bb);
+        }
 
 
         //-----------------------------------------------------------------------------------
@@ -98,9 +104,7 @@ import exception.InvalidPrimaryKeyException;
                 }
                 else
                 {
-                    System.out.println("hi motha f**ka");
                     Integer bookId = insertAutoIncrementalPersistentState(mySchema, persistentState);
-                    System.out.println("hunter thomas");
                     persistentState.setProperty("bookId", "" + bookId);
                     updateStatusMessage = "Book data for new Book : " +  persistentState.getProperty("bookId")
                             + "installed successfully in database!";
@@ -108,6 +112,7 @@ import exception.InvalidPrimaryKeyException;
             }
             catch (SQLException ex)
             {
+                System.out.println("Error: " + ex.toString());
                 updateStatusMessage = "Error in installing Book data in database!";
             }
             //DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
