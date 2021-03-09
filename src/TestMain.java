@@ -22,7 +22,7 @@ public class TestMain{
             bk2.update();
             System.out.println(bk2.toString());
 
-            Patron pt = new Patron("1");
+            Patron pt = new Patron("25");
             System.out.println(pt.toString());
 
             Properties w = new Properties();
@@ -32,7 +32,7 @@ public class TestMain{
             w.setProperty("stateCode", "En");
             w.setProperty("zip", "14420");
             w.setProperty("email", "rononurmom@wizzyconnect.com");
-            w.setProperty("dateOfBirth", "2/12/1999");
+            w.setProperty("dateOfBirth", "1999-12-2");
             w.setProperty("status", "Inactive");
 
             Patron pt2 = new Patron(w);
@@ -43,6 +43,14 @@ public class TestMain{
             bkc.getAuthor("Jesus");
 
             System.out.println(bkc.toString());
+
+            PatronCollection pkc = new PatronCollection();
+            pkc.getStateCode("NY");
+            System.out.println(pkc.toString());
+
+            PatronCollection pkc1 = new PatronCollection();
+            pkc1.getDOBBefore("1999-12-2");
+            System.out.println(pkc1.toString());
 
 
 

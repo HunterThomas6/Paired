@@ -76,7 +76,11 @@ public class Patron extends EntityBase {
         return "Patron: ID: " + getState("patronId") + " name: " + getState("name") + " email: " + getState("email");
     }
 
-
+    public static int compare(Patron a, Patron b) {
+        String ba = (String)a.getState("name");
+        String bb = (String)b.getState("name");
+        return ba.compareTo(bb);
+    }
 
     //-----------------------------------------------------------------------------------
     public void update()

@@ -1,34 +1,25 @@
 package model;
 
+import exception.InvalidPrimaryKeyException;
+
 import java.util.Properties;
 import java.util.Vector;
-import javafx.scene.Scene;
 
-// project imports
-import exception.InvalidPrimaryKeyException;
-import event.Event;
-import database.*;
+public class PatronCollection extends EntityBase{
+    private static final String myTableName = "Patron";
 
-import impresario.IView;
-
-import userinterface.View;
-import userinterface.ViewFactory;
-
-public class BookCollection extends EntityBase {
-    private static final String myTableName = "Book";
-
-    private Vector<Book> books;
+    private Vector<Patron> patronList;
     // GUI Components
 
-    public BookCollection(){
+    public PatronCollection(){
         super(myTableName);
-        books = new Vector<Book>();
+        patronList = new Vector<Patron>();
     }
     // constructor for this class
     //----------------------------------------------------------
 
-    public void getAuthor(String stAuthor) {
-        String query = "SELECT * FROM " + myTableName + " WHERE (author LIKE '%" + stAuthor + "%')";
+    public void getZip(String stZip) {
+        String query = "SELECT * FROM " + myTableName + " WHERE (zip LIKE '%" + stZip + "%')";
         try {
             queryer(query);
         } catch (Exception x) {
@@ -45,8 +36,8 @@ public class BookCollection extends EntityBase {
         }
     }
 
-    public void getTitle(String stTitle){
-        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + stTitle + "%')";
+    public void getName(String stName){
+        String query = "SELECT * FROM " + myTableName + " WHERE (name LIKE '%" + stName + "%')";
         try {
             queryer(query);
         } catch (Exception x) {
@@ -54,12 +45,32 @@ public class BookCollection extends EntityBase {
         }
     }
 
-    public void getPubYear(String stYear) {
-        String query = "SELECT * FROM " + myTableName + " WHERE (pubYear LIKE '%" + stYear + "%')";
+    public void getStateCode(String stStateCode) {
+        String query = "SELECT * FROM " + myTableName + " WHERE (stateCode LIKE '%" + stStateCode + "%')";
         try {
             queryer(query);
         } catch (Exception x) {
             System.out.println("Error: " + x);
+        }
+    }
+
+    public void getDOBBefore(String date) {
+        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth < '" + date + "')";
+        try {
+            queryer(query);
+        }
+        catch (Exception x){
+            System.out.println("Error" + x);
+        }
+    }
+
+    public void getDOBAfter(String date) {
+        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth > '" + date + "')";
+        try {
+            queryer(query);
+        }
+        catch (Exception x){
+            System.out.println("Error" + x);
         }
     }
 
@@ -68,17 +79,17 @@ public class BookCollection extends EntityBase {
 
         if (allDataRetrieved != null)
         {
-            books = new Vector<Book>();
+            patronList = new Vector<Patron>();
 
             for (int cnt = 0; cnt < allDataRetrieved.size(); cnt++)
             {
-                Properties nextBookData = (Properties)allDataRetrieved.elementAt(cnt);
+                Properties nextPatronData = (Properties)allDataRetrieved.elementAt(cnt);
 
-                Book book = new Book(nextBookData);
+                Patron patron = new Patron(nextPatronData);
 
-                if (book != null)
+                if (patron != null)
                 {
-                    addBook(book);
+                    addPatron(patron);
                 }
             }
 
@@ -90,28 +101,28 @@ public class BookCollection extends EntityBase {
     }
 
     //----------------------------------------------------------------------------------
-    private void addBook(Book a)
+    private void addPatron(Patron a)
     {
         //accounts.add(a);
         int index = findIndexToAdd(a);
-        books.insertElementAt(a,index); // To build up a collection sorted on some key
+        patronList.insertElementAt(a,index); // To build up a collection sorted on some key
     }
 
     //----------------------------------------------------------------------------------
-    private int findIndexToAdd(Book a)
+    private int findIndexToAdd(Patron a)
     {
         //users.add(u);
         int low=0;
-        int high = books.size()-1;
+        int high = patronList.size()-1;
         int middle;
 
         while (low <=high)
         {
             middle = (low+high)/2;
 
-            Book midSession = books.elementAt(middle);
+            Patron midSession = patronList.elementAt(middle);
 
-            int result = Book.compare(a,midSession);
+            int result = Patron.compare(a,midSession);
 
             if (result ==0)
             {
@@ -139,7 +150,7 @@ public class BookCollection extends EntityBase {
     public Object getState(String key)
     {
         if (key.equals("Accounts"))
-            return books;
+            return patronList;
         else
         if (key.equals("AccountList"))
             return this;
@@ -154,16 +165,16 @@ public class BookCollection extends EntityBase {
     }
 
     //----------------------------------------------------------
-    public Book retrieve(String bookId)
+    public Patron retrieve(String patronId)
     {
-        Book retValue = null;
-        for (int cnt = 0; cnt < books.size(); cnt++)
+        Patron retValue = null;
+        for (int cnt = 0; cnt < patronList.size(); cnt++)
         {
-            Book nextBk = books.elementAt(cnt);
-            String nextBkNum = (String)nextBk.getState("bookId");
-            if (nextBkNum.equals(bookId  ) == true)
+            Patron nextPatron = patronList.elementAt(cnt);
+            String nextPaNum = (String)nextPatron.getState("patronId");
+            if (nextPaNum.equals(patronId) == true)
             {
-                retValue = nextBk;
+                retValue = nextPatron;
                 return retValue; // we should say 'break;' here
             }
         }
@@ -209,8 +220,9 @@ public class BookCollection extends EntityBase {
 
     public String toString(){
         String returnValue = "";
-        for (int cnt = 0; cnt < books.size(); cnt++)
-            returnValue += books.get(cnt).toString() + "\n";
+        for (int cnt = 0; cnt < patronList.size(); cnt++)
+            returnValue += patronList.get(cnt).toString() + "\n";
         return returnValue;
     }
 }
+
