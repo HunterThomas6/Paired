@@ -36,6 +36,7 @@ public class BookCollection extends EntityBase {
         }
     }
 
+    //----------------------------------------------------------
     public void getStatus(String stStatus) {
         String query = "SELECT * FROM " + myTableName + " WHERE (stutus LIKE '%" + stStatus + "%')";
         try {
@@ -45,6 +46,29 @@ public class BookCollection extends EntityBase {
         }
     }
 
+    //----------------------------------------------------------
+    public void getDateBefore(String date) {
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubYear < '" + date + "')";
+        try {
+            queryer(query);
+        }
+        catch (Exception x){
+            System.out.println("Error" + x);
+        }
+    }
+
+    //----------------------------------------------------------
+    public void getDateAfter(String date) {
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubYear > '" + date + "')";
+        try {
+            queryer(query);
+        }
+        catch (Exception x){
+            System.out.println("Error" + x);
+        }
+    }
+
+    //----------------------------------------------------------
     public void getTitle(String stTitle){
         String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + stTitle + "%')";
         try {
@@ -54,6 +78,7 @@ public class BookCollection extends EntityBase {
         }
     }
 
+    //----------------------------------------------------------
     public void getPubYear(String stYear) {
         String query = "SELECT * FROM " + myTableName + " WHERE (pubYear LIKE '%" + stYear + "%')";
         try {
@@ -63,6 +88,7 @@ public class BookCollection extends EntityBase {
         }
     }
 
+    //----------------------------------------------------------
     public void queryer(String d) throws InvalidPrimaryKeyException {
         Vector allDataRetrieved = getSelectQueryResult(d);
 
