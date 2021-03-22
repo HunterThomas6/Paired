@@ -1,12 +1,20 @@
+import javafx.*;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
 import model.*;
 
 import java.util.*;
 
-public class TestMain{
+import static javafx.application.Application.launch;
+
+public class TestMain extends Application {
     public static void main(String[] args)
     {
         try
         {
+            launch(args);
+            Librarian tester = new Librarian();
             int y = 1;
             Scanner input = new Scanner(System.in);
             while (y == 1) {
@@ -160,5 +168,15 @@ public class TestMain{
         {
             System.out.println("Error in accessing database: " + ex.toString());
         }
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
     }
 }
