@@ -24,9 +24,11 @@ import java.util.Properties;
 
 public class LibrarianView extends View{
     // GUI stuff
-    private TextField userid;
-    private PasswordField password;
-    private Button submitButton;
+    private Button newBook;
+    private Button newPatron;
+    private Button searchBook;
+    private Button searchPatron;
+    private Button done;
 
     // For showing error message
     private MessageView statusLog;
@@ -46,11 +48,8 @@ public class LibrarianView extends View{
         // create a Node (Text) for showing the title
         container.getChildren().add(createTitle());
 
-        // create a Node (GridPane) for showing data entry fields
-        container.getChildren().add(createFormContents());
-
         // Error message area
-        container.getChildren().add(createStatusLog("                          "));
+        container.getChildren().add(createFormContents());
 
         getChildren().add(container);
 
@@ -86,34 +85,10 @@ public class LibrarianView extends View{
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         // data entry fields
-        Label userName = new Label("User ID:");
-        grid.add(userName, 0, 0);
 
-        Button insertBook = new Button();
-        insertBook.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent e) {
-                processAction(e);
-            }
-        });
-        grid.add(insertBook, 1, 0);
-
-        Label pw = new Label("Password:");
-        grid.add(pw, 0, 1);
-
-        password = new PasswordField();
-        password.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent e) {
-                processAction(e);
-            }
-        });
-        grid.add(password, 1, 1);
-
-        submitButton = new Button("Submit");
-        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+        newBook = new Button("Add a Book");
+        grid.add(newBook,1,0);
+        newBook.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent e) {
@@ -121,10 +96,45 @@ public class LibrarianView extends View{
             }
         });
 
-        HBox btnContainer = new HBox(10);
-        btnContainer.setAlignment(Pos.BOTTOM_RIGHT);
-        btnContainer.getChildren().add(submitButton);
-        grid.add(btnContainer, 1, 3);
+        newPatron = new Button("Add a Patron");
+        grid.add(newPatron, 1, 1);
+        newPatron.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                processAction(e);
+            }
+        });
+
+        searchBook= new Button("Search Books");
+        grid.add(searchBook, 1, 3);
+        searchBook.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                processAction(e);
+            }
+        });
+
+        searchPatron = new Button("Search Patrons");
+        grid.add(searchPatron, 1, 4);
+        searchPatron.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                processAction(e);
+            }
+        });
+
+        done = new Button("Done");
+        grid.add(done,2, 5);
+        done.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                processAction(e);
+            }
+        });
 
         return grid;
     }
@@ -144,8 +154,8 @@ public class LibrarianView extends View{
     //-------------------------------------------------------------
     public void populateFields()
     {
-        userid.setText("");
-        password.setText("");
+        //userid.setText("");
+        //password.setText("");
     }
 
     // This method processes events generated from our GUI components.
@@ -153,22 +163,7 @@ public class LibrarianView extends View{
     //-------------------------------------------------------------
     public void processAction(Event evt)
     {
-        // DEBUG: System.out.println("TellerView.actionPerformed()");
-
-        clearErrorMessage();
-
-        String useridEntered = userid.getText();
-
-        if ((useridEntered == null) || (useridEntered.length() == 0))
-        {
-            displayErrorMessage("Please enter a user id!");
-            userid.requestFocus();
-        }
-        else
-        {
-            String passwordEntered = password.getText();
-            processUserIDAndPassword(useridEntered, passwordEntered);
-        }
+ //
 
     }
 
@@ -180,15 +175,7 @@ public class LibrarianView extends View{
     private void processUserIDAndPassword(String useridString,
                                           String passwordString)
     {
-        Properties props = new Properties();
-        props.setProperty("ID", useridString);
-        props.setProperty("Password", passwordString);
 
-        // clear fields for next time around
-        userid.setText("");
-        password.setText("");
-
-        myModel.stateChangeRequest("Login", props);
     }
 
     //---------------------------------------------------------
