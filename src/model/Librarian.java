@@ -6,6 +6,7 @@ import exception.PasswordMismatchException;
 import impresario.IModel;
 import impresario.IView;
 import impresario.ModelRegistry;
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import userinterface.MainStageContainer;
@@ -56,16 +57,17 @@ public class Librarian implements IView, IModel
             createAndShowLibrarianView();
         }
 
-        //-----------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
         private void setDependencies(){
             dependencies = new Properties();
+            /*
             dependencies.setProperty("Login", "LoginError");
             dependencies.setProperty("Deposit", "TransactionError");
             dependencies.setProperty("Withdraw", "TransactionError");
             dependencies.setProperty("Transfer", "TransactionError");
             dependencies.setProperty("BalanceInquiry", "TransactionError");
             dependencies.setProperty("ImposeServiceCharge", "TransactionError");
-
+            */
             myRegistry.setDependencies(dependencies);
         }
 
@@ -80,6 +82,7 @@ public class Librarian implements IView, IModel
         //----------------------------------------------------------
         public Object getState (String key)
         {
+            /*
             if (key.equals("LoginError") == true) {
                 return loginErrorMessage;
             } else if (key.equals("TransactionError") == true) {
@@ -90,6 +93,8 @@ public class Librarian implements IView, IModel
                 } else
                     return "Undefined";
             } else
+
+             */
                 return "";
         }
 
@@ -129,7 +134,7 @@ public class Librarian implements IView, IModel
                 createAndShowLibrarianView();
             }
 
-            myRegistry.updateSubscribers(key, this);
+            myRegistry.updateSubscribers(key, (IModel) this);
         }
 
         /** Called via the IView relationship */

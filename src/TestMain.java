@@ -1,4 +1,4 @@
-import javafx.*;
+
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -14,7 +14,9 @@ public class TestMain extends Application {
         try
         {
             launch(args);
+            Teller testers = new Teller();
             Librarian tester = new Librarian();
+
             int y = 1;
             Scanner input = new Scanner(System.in);
             while (y == 1) {
@@ -168,11 +170,6 @@ public class TestMain extends Application {
         {
             System.out.println("Error in accessing database: " + ex.toString());
         }
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-
     }
 
     @Override

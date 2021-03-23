@@ -33,10 +33,10 @@ public class LibrarianView extends View{
 
     // constructor for this class -- takes a model object
     //----------------------------------------------------------
-    public LibrarianView( IModel teller)
+    public LibrarianView( IModel librarian)
     {
 
-        super(teller, "LibrarianView");
+        super(librarian, "LibrarianView");
 
         // create a container for showing the contents
         VBox container = new VBox(10);
