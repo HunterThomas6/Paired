@@ -52,7 +52,10 @@ public abstract class EntityBase extends Persistable
 
 	protected Properties mySchema;
 
-	// forward declarations
+    protected EntityBase() {
+    }
+
+    // forward declarations
 	public abstract Object getState(String key);
 	public abstract void stateChangeRequest(String key, Object value);
 	protected abstract void initializeSchema(String tableName);

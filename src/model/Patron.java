@@ -56,6 +56,9 @@ public class Patron extends EntityBase {
         }
     }
 
+    public Patron() {
+    }
+
     private void setDependencies(){
         this.dependencies = new Properties();
         this.myRegistry.setDependencies(this.dependencies);

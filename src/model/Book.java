@@ -56,6 +56,10 @@ import exception.InvalidPrimaryKeyException;
             }
         }
 
+        public Book() {
+
+        }
+
         private void setDependencies(){
             this.dependencies = new Properties();
             this.myRegistry.setDependencies(this.dependencies);

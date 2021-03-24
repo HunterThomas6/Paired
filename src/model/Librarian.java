@@ -25,7 +25,8 @@ public class Librarian implements IView, IModel
         // For Impresario
         private Properties dependencies;
         private ModelRegistry myRegistry;
-
+        private Book myBook;
+        private Patron myPatron;
         private AccountHolder myAccountHolder;
 
         // GUI Components
@@ -99,45 +100,56 @@ public class Librarian implements IView, IModel
         }
 
         //----------------------------------------------------------------
-        public void stateChangeRequest (String key, Object value)
+        public void stateChangeRequest(String key, Object value)
         {
             // STEP 4: Write the sCR method component for the key you
             // just set up dependencies for
             // DEBUG System.out.println("Teller.sCR: key = " + key);
 
-            if (key.equals("Login") == true) {
-                if (value != null) {
-                    loginErrorMessage = "";
-
-                    boolean flag = loginAccountHolder((Properties) value);
-                    if (flag == true) {
-                        createAndShowTransactionChoiceView();
-                    }
-                }
-            } else if (key.equals("CancelTransaction") == true) {
-                createAndShowTransactionChoiceView();
-            } else if ((key.equals("Deposit") == true) || (key.equals("Withdraw") == true) ||
-                    (key.equals("Transfer") == true) || (key.equals("BalanceInquiry") == true) ||
-                    (key.equals("ImposeServiceCharge") == true)) {
+            //Change this when needed
+            if (key.equals("addBook") == true)
+            {
+                myBook = new Book();
+                createAndShowBookView();
+            }
+            else
+            if (key.equals("addPatron") == true)
+            {
+                myPatron = new Patron();
+                createAndShowPatronView();
+            }
+            else
+            if ((key.equals("Deposit") == true) || (key.equals("Withdraw") == true) ||
+            (key.equals("Transfer") == true) || (key.equals("BalanceInquiry") == true) ||
+            (key.equals("ImposeServiceCharge") == true))
+            {
                 String transType = key;
 
-                if (myAccountHolder != null) {
+                if (myAccountHolder != null)
+                {
                     doTransaction(transType);
-                } else {
+                }
+                else
+                {
                     transactionErrorMessage = "Transaction impossible: Customer not identified";
                 }
 
-            } else if (key.equals("Logout") == true) {
+            }
+        else
+
+            if (key.equals("Logout") == true)
+            {
                 myAccountHolder = null;
                 myViews.remove("TransactionChoiceView");
 
                 createAndShowLibrarianView();
             }
 
-            myRegistry.updateSubscribers(key, (IModel) this);
+            myRegistry.updateSubscribers(key, this);
         }
 
-        /** Called via the IView relationship */
+
+    /** Called via the IView relationship */
         //----------------------------------------------------------
         public void updateState (String key, Object value)
         {
@@ -223,6 +235,37 @@ public class Librarian implements IView, IModel
 
         }
 
+    private void createAndShowPatronView()
+    {
+        Scene currentScene = (Scene)myViews.get("PatronView");
+
+        if (currentScene == null)
+        {
+            // create our initial view
+            View newView = ViewFactory.createView("PatronView", this); // USE VIEW FACTORY
+            currentScene = new Scene(newView);
+            myViews.put("PatronView", currentScene);
+        }
+
+        swapToView(currentScene);
+
+    }
+
+    private void createAndShowBookView()
+    {
+        Scene currentScene = (Scene)myViews.get("BookView");
+
+        if (currentScene == null)
+        {
+            // create our initial view
+            View newView = ViewFactory.createView("BookView", this); // USE VIEW FACTORY
+            currentScene = new Scene(newView);
+            myViews.put("BookView", currentScene);
+        }
+
+        swapToView(currentScene);
+
+    }
 
         /** Register objects to receive state updates. */
         //----------------------------------------------------------
