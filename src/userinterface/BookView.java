@@ -41,7 +41,7 @@ public class BookView extends View
     protected TextField newTitle;
     protected TextField pubYear;
 
-    protected String[] status = {"Active, Inactive"};
+    protected ComboBox status;
 
     protected Button subButton;
     protected Button doneButton;
@@ -144,14 +144,14 @@ public class BookView extends View
         pubYear.setEditable(true);
         grid.add(pubYear, 1, 3);
 
-        final ComboBox comboBox = new ComboBox();
-        comboBox.getItems().addAll(
+        status = new ComboBox();
+        status.getItems().addAll(
                 "Active",
                 "Inactive"
         );
 
-        comboBox.setValue("Active");
-        grid.add(comboBox, 1, 4);
+        status.setValue("Active");
+        grid.add(status, 1, 4);
 
 
         HBox doneCont = new HBox(10);
@@ -163,18 +163,18 @@ public class BookView extends View
             @Override
             public void handle(ActionEvent e) {
                 clearErrorMessage();
-                myModel.stateChangeRequest("Cancelled", null);
+                processAction(e);
             }
         });
 
-        doneButton = new Button("Done");
+        doneButton = new Button("Back");
         doneButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         doneButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent e) {
                 clearErrorMessage();
-                myModel.stateChangeRequest("Cancelled", null);
+                myModel.stateChangeRequest("CancelTransaction", null);
             }
         });
         doneCont.getChildren().add(subButton);
@@ -211,9 +211,19 @@ public class BookView extends View
     public void processAction(Event evt)
     {
         // DEBUG: System.out.println("TellerView.actionPerformed()");
+        String author = newAuthor.getText();
+        String title = newTitle.getText();
+        String pub = pubYear.getText();
+        String stat = (String) status.getValue();
 
+        Properties p1 = new Properties();
+        p1.setProperty("bookTitle", title);
+        p1.setProperty("author", author);
+        p1.setProperty("pubYear", pub);
+        p1.setProperty("status", stat);
 
-
+        Book bk1 = new Book(p1);
+        bk1.update();
     }
 
 
