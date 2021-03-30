@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 import java.util.Properties;
 
@@ -127,7 +128,9 @@ public class LibrarianView extends View{
 
             @Override
             public void handle(ActionEvent e) {
-                processAction(e);
+
+                //processAction(e);
+                myModel.stateChangeRequest("patronSearch", null);
             }
         });
 
@@ -137,7 +140,9 @@ public class LibrarianView extends View{
 
             @Override
             public void handle(ActionEvent e) {
-                processAction(e);
+                Stage stage = (Stage) done.getScene().getWindow();
+                stage.close();
+                // processAction(e);
             }
         });
 

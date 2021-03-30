@@ -149,11 +149,12 @@ public class PatronCollection extends EntityBase{
     //----------------------------------------------------------
     public Object getState(String key)
     {
-        if (key.equals("Accounts"))
+        if (key.equals("Patron"))
             return patronList;
         else
-        if (key.equals("AccountList"))
+        if (key.equals("PatronList"))
             return this;
+        else
         return null;
     }
 

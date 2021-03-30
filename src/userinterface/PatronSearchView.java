@@ -18,9 +18,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+public class PatronSearchView extends View {
 
-public class BookSearchView extends View{
-    protected TextField bookTitle;
+    protected TextField zip;
 
     protected Button cancelButton;
     protected Button submitButton;
@@ -28,8 +28,8 @@ public class BookSearchView extends View{
     // For showing error message
     protected MessageView statusLog;
 
-    public BookSearchView(IModel Book) {
-        super(Book, "BookSearchView");
+    public PatronSearchView(IModel Librarian) {
+        super(Librarian, "PSearchView");
         VBox container = new VBox(10.0D);
         container.setPadding(new Insets(15.0D, 5.0D, 5.0D, 5.0D));
         // Add a title for this panel
@@ -49,7 +49,7 @@ public class BookSearchView extends View{
     private Node createTitle() {
         HBox var1 = new HBox();
         var1.setAlignment(Pos.CENTER);
-        Text var2 = new Text(" Search Book ");
+        Text var2 = new Text(" Search Patron ");
         var2.setFont(Font.font("Arial", FontWeight.BOLD, 20.0D));
         var2.setWrappingWidth(300.0D);
         var2.setTextAlignment(TextAlignment.CENTER);
@@ -70,17 +70,17 @@ public class BookSearchView extends View{
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Text prompt = new Text("BOOK TITLE");
+        Text prompt = new Text("ZIP CODE");
         prompt.setWrappingWidth(400);
         prompt.setTextAlignment(TextAlignment.CENTER);
         prompt.setFill(Color.BLACK);
         grid.add(prompt, 0, 0, 2, 1);
 
 
-        bookTitle = new TextField();
-        bookTitle.setEditable(true);
-        bookTitle.setAlignment(Pos.CENTER);
-        grid.add(bookTitle,0,1,2,1);
+        zip = new TextField();
+        zip.setEditable(true);
+        zip.setAlignment(Pos.CENTER);
+        grid.add(zip,0,1,2,1);
 
         submitButton = new Button("Submit");
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -88,7 +88,8 @@ public class BookSearchView extends View{
             public void handle(ActionEvent e) {
 
                 //processAction(e);
-                myModel.stateChangeRequest("BookCollectionView", bookTitle.getText());
+
+                myModel.stateChangeRequest("PatronCollectionView", zip.getText());
             }
         });
 
@@ -123,7 +124,7 @@ public class BookSearchView extends View{
     }
 
     public void populateFields() {
-        this.bookTitle.setText((String)this.myModel.getState("Book Title"));
+        this.zip.setText((String)this.myModel.getState("Zip Code"));
 
     }
 
@@ -164,7 +165,7 @@ public class BookSearchView extends View{
 
         clearErrorMessage();
 
-        String title = bookTitle.getText();
+        String zipCode = zip.getText();
     }
 
 }

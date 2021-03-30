@@ -30,6 +30,7 @@ public class Librarian implements IView, IModel
         private Patron myPatron;
         private BookCollection bc;
         private AccountHolder myAccountHolder;
+        private PatronCollection pc;
 
         // GUI Components
         private Hashtable<String, Scene> myViews;
@@ -87,6 +88,9 @@ public class Librarian implements IView, IModel
         {
             if (key.equals("BookList"))
                 return bc;
+            else if (key.equals("PatronList"))
+                return pc;
+            else
             return null;
         }
 
@@ -122,6 +126,12 @@ public class Librarian implements IView, IModel
             else if(key.equals("BookCollectionView") == true){
                 searchBooks((String)value);
 
+            }
+            else if (key.equals("patronSearch")){
+                createAndShowPatronSearchView();
+            }
+            else if(key.equals("PatronCollectionView") == true){
+                searchPatrons((String)value);
             }
             else
             if ((key.equals("Deposit") == true) || (key.equals("Withdraw") == true) ||
@@ -233,6 +243,13 @@ public class Librarian implements IView, IModel
 
         }
 
+        private void searchPatrons(String z)
+        {
+            pc = new PatronCollection();
+            pc.getZip(z);
+            createAndShowPatronCollectionView();
+        }
+
         //------------------------------------------------------------
         private void createAndShowLibrarianView()
         {
@@ -306,6 +323,38 @@ public class Librarian implements IView, IModel
             View newView = ViewFactory.createView("BookCollectionView",this); // USE VIEW FACTORY
             currentScene = new Scene(newView);
             myViews.put("BookCollectionView", currentScene);
+        }
+
+        swapToView(currentScene);
+
+    }
+
+    private void createAndShowPatronSearchView()
+    {
+        Scene currentScene = (Scene)myViews.get("PatronSearchView");
+
+        if (currentScene == null)
+        {
+            // create our initial view
+            View newView = ViewFactory.createView("PatronSearchView",this); // USE VIEW FACTORY
+            currentScene = new Scene(newView);
+            myViews.put("PatronSearchView", currentScene);
+        }
+
+        swapToView(currentScene);
+
+    }
+
+    private void createAndShowPatronCollectionView()
+    {
+        Scene currentScene = (Scene)myViews.get("PatronCollectionView");
+
+        if (currentScene == null)
+        {
+            // create our initial view
+            View newView = ViewFactory.createView("PatronCollectionView",this); // USE VIEW FACTORY
+            currentScene = new Scene(newView);
+            myViews.put("PatronCollectionView", currentScene);
         }
 
         swapToView(currentScene);
