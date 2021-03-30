@@ -164,10 +164,10 @@ public class BookCollection extends EntityBase {
     //----------------------------------------------------------
     public Object getState(String key)
     {
-        if (key.equals("Accounts"))
+        if (key.equals("Books"))
             return books;
         else
-        if (key.equals("AccountList"))
+        if (key.equals("BookList"))
             return this;
         return null;
     }
@@ -204,6 +204,7 @@ public class BookCollection extends EntityBase {
         stateChangeRequest(key, value);
     }
 
+
     //------------------------------------------------------
    /* protected void createAndShowView()
     {
@@ -231,6 +232,10 @@ public class BookCollection extends EntityBase {
         {
             mySchema = getSchemaInfo(tableName);
         }
+    }
+
+    public Vector getBooks(){
+        return books;
     }
 
     public String toString(){

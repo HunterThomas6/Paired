@@ -16,6 +16,7 @@ import userinterface.WindowPosition;
 
 import java.util.Hashtable;
 import java.util.Properties;
+import java.util.Vector;
 
 public class Librarian implements IView, IModel
 {
@@ -27,6 +28,7 @@ public class Librarian implements IView, IModel
         private ModelRegistry myRegistry;
         private Book myBook;
         private Patron myPatron;
+        private BookCollection bc;
         private AccountHolder myAccountHolder;
 
         // GUI Components
@@ -81,25 +83,15 @@ public class Librarian implements IView, IModel
          * @return Value associated with the field
          */
         //----------------------------------------------------------
-        public Object getState (String key)
+        public Object getState(String key)
         {
-            /*
-            if (key.equals("LoginError") == true) {
-                return loginErrorMessage;
-            } else if (key.equals("TransactionError") == true) {
-                return transactionErrorMessage;
-            } else if (key.equals("Name") == true) {
-                if (myAccountHolder != null) {
-                    return myAccountHolder.getState("Name");
-                } else
-                    return "Undefined";
-            } else
-
-             */
-                return "";
+            if (key.equals("BookList"))
+                return bc;
+            return null;
         }
 
-        //----------------------------------------------------------------
+
+    //----------------------------------------------------------------
         public void stateChangeRequest(String key, Object value)
         {
             // STEP 4: Write the sCR method component for the key you
@@ -121,6 +113,15 @@ public class Librarian implements IView, IModel
             else if (key.equals("CancelTransaction") == true)
             {
                 createAndShowLibrarianView();
+            }
+            else if (key.equals("searchBook") == true)
+            {
+
+                createAndShowBookSearchView();
+            }
+            else if(key.equals("BookCollectionView") == true){
+                searchBooks((String)value);
+
             }
             else
             if ((key.equals("Deposit") == true) || (key.equals("Withdraw") == true) ||
@@ -151,6 +152,7 @@ public class Librarian implements IView, IModel
 
             myRegistry.updateSubscribers(key, this);
         }
+
 
 
     /** Called via the IView relationship */
@@ -223,6 +225,14 @@ public class Librarian implements IView, IModel
 
         }
 
+        private void searchBooks(String t)
+        {
+            bc = new BookCollection();
+            bc.getTitle(t);
+            createAndShowBookCollectionView();
+
+        }
+
         //------------------------------------------------------------
         private void createAndShowLibrarianView()
         {
@@ -271,7 +281,40 @@ public class Librarian implements IView, IModel
 
     }
 
-        /** Register objects to receive state updates. */
+    private void createAndShowBookSearchView()
+    {
+        Scene currentScene = (Scene) myViews.get("BookSearchView");
+
+        if (currentScene == null) {
+            // create our initial view
+            View newView = ViewFactory.createView("BookSearchView", this); // USE VIEW FACTORY
+            currentScene = new Scene(newView);
+            myViews.put("BookSearchView", currentScene);
+        }
+
+        swapToView(currentScene);
+
+    }
+
+    private void createAndShowBookCollectionView()
+    {
+        Scene currentScene = (Scene)myViews.get("BookCollectionView");
+
+        if (currentScene == null)
+        {
+            // create our initial view
+            View newView = ViewFactory.createView("BookCollectionView",this); // USE VIEW FACTORY
+            currentScene = new Scene(newView);
+            myViews.put("BookCollectionView", currentScene);
+        }
+
+        swapToView(currentScene);
+
+    }
+
+
+
+    /** Register objects to receive state updates. */
         //----------------------------------------------------------
         public void subscribe (String key, IView subscriber)
         {
