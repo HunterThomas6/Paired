@@ -167,7 +167,7 @@ public class BookCollectionView extends View{
         scrollPane.setPrefSize(105, 150);
         scrollPane.setContent(tableOfBooks);
 
-        submitButton = new Button("Submit");
+        submitButton = new Button("Done");
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -175,6 +175,7 @@ public class BookCollectionView extends View{
                 clearErrorMessage();
                 // do the inquiry
                 processBookSelected();
+                myModel.stateChangeRequest("CancelTransaction", null);
 
             }
         });

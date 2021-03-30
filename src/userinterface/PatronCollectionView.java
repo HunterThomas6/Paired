@@ -193,7 +193,7 @@ public class PatronCollectionView extends View
         scrollPane.setPrefSize(115, 150);
         scrollPane.setContent(tableOfPatrons);
 
-        submitButton = new Button("Submit");
+        submitButton = new Button("Done");
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -201,6 +201,7 @@ public class PatronCollectionView extends View
                 clearErrorMessage();
                 // do the inquiry
                 processPatronSelected();
+                myModel.stateChangeRequest("CancelTransaction", null);
 
             }
         });
